@@ -8,15 +8,19 @@ export default async function handler(req, res) {
 
     if (req.method === 'OPTIONS') return res.status(200).end();
 
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
+    // Ép sang múi giờ Việt Nam (Asia/Ho_Chi_Minh)
+    const options = { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formatter = new Intl.DateTimeFormat('en-GB', options);
+    const parts = formatter.formatToParts(new Date());
 
-    // Tạo 4 ký tự ngẫu nhiên ngẫu nhiên (chữ + số)
+    const day = parts.find(p => p.type === 'day').value;
+    const month = parts.find(p => p.type === 'month').value;
+    const year = parts.find(p => p.type === 'year').value;
+
+    // Chuỗi ngẫu nhiên 4 ký tự đằng sau
     const randomStr = crypto.randomBytes(2).toString('hex').toUpperCase();
 
-    // Kết quả dạng: TLONG-01092026-A8F2
+    // Kết quả chuẩn theo giờ Việt Nam
     const dailyKey = `TLONG-${day}${month}${year}-${randomStr}`;
 
     return res.status(200).json({ success: true, key: dailyKey });

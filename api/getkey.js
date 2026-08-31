@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-    // Cấu hình CORS
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
@@ -12,7 +11,6 @@ export default async function handler(req, res) {
     const APP_ID = "6ff8e0d1-efa2-4686-ae24-8da3e8a94b30";
     const APP_SECRET = "23fbc34f265b6882d752eb20c93188508b7db026cf00c52ac6408cd78d38e408";
 
-    // Danh sách các Endpoint tạo Key phổ biến của PWF License
     const endpoints = [
         "https://pwfauth.com/api/v2/licenses/create",
         "https://pwfauth.com/api/v1/licenses/create",
@@ -46,12 +44,12 @@ export default async function handler(req, res) {
                 }
             }
         } catch (e) {
-            // Tiếp tục thử endpoint tiếp theo nếu lỗi
+            // Continue trying next endpoint
         }
     }
 
     return res.status(400).json({ 
         success: false, 
-        message: "PWF Auth từ chối tạo Key. Vui lòng kiểm tra lại App ID/Secret trên Admin Panel!" 
+        message: "Failed to generate key. Please check App ID/Secret on Admin Panel!" 
     });
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,14 +18,14 @@
 <body>
     <div class="card">
         <div class="icon-wrapper">✓</div>
-        <h1>VƯỢT LINK THÀNH CÔNG!</h1>
-        <p class="sub">Key PWF Auth chính thức của bạn đã được khởi tạo:</p>
+        <h1>CHECKPOINT PASSED!</h1>
+        <p class="sub">Your official PWF Auth key is ready:</p>
         
         <div class="key-container" id="keyDisplay">
-            <span style="color: #38bdf8;">⏳ Đang tạo Key từ PWF Auth...</span>
+            <span style="color: #38bdf8;">⏳ Generating key from PWF Auth...</span>
         </div>
         
-        <button class="btn-copy" onclick="copyKey()">📋 SAO CHÉP KEY VÀO ROBLOX</button>
+        <button class="btn-copy" onclick="copyKey()">📋 COPY KEY TO ROBLOX</button>
     </div>
 
     <script>
@@ -39,10 +39,10 @@
                     keyDisplay.innerText = data.key;
                     keyDisplay.style.borderStyle = "solid";
                 } else {
-                    keyDisplay.innerHTML = `<span style="color: #f87171;">❌ ${data.message || 'Lỗi tạo Key!'}</span>`;
+                    keyDisplay.innerHTML = `<span style="color: #f87171;">❌ ${data.message || 'Key generation failed!'}</span>`;
                 }
             } catch (err) {
-                keyDisplay.innerHTML = '<span style="color: #f87171;">❌ Lỗi kết nối Server!</span>';
+                keyDisplay.innerHTML = '<span style="color: #f87171;">❌ Server connection error!</span>';
             }
         }
 
@@ -50,7 +50,7 @@
             const keyText = document.getElementById('keyDisplay').innerText;
             if (keyText.includes("❌") || keyText.includes("⏳")) return;
             navigator.clipboard.writeText(keyText);
-            alert("Đã sao chép Key PWF Auth vào bộ nhớ tạm!");
+            alert("Key copied to clipboard!");
         }
 
         fetchPwfKey();

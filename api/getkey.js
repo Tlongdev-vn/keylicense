@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     const randomStr = crypto.randomBytes(2).toString('hex').toUpperCase();
 
     // Kết quả chuẩn theo giờ Việt Nam
-    const dailyKey = `TLONG-${day}${month}${year}-${randomStr}`;
+    const dailyKey = `TLong-${day}${month}${year}-${randomStr}`;
 
     return res.status(200).json({ success: true, key: dailyKey });
 }

@@ -70,7 +70,7 @@ end
 local function LaunchMainScript()
     task.spawn(function()
         local success, result = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Ryuun0x/Clover/main/main.lua"))()
+            return loadstring(game:HttpGet("https://cloverhub.app/clover.lua"))()
         end)
         if not success then
             warn("[Clover Hub Error]:", result)
